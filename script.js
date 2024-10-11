@@ -1,5 +1,3 @@
-const mainImg = document.getElementById("mainImage");
-
 const SkullPumpkin = {
   src: "./Assets/SkullPumpkin/SkullPumpkin-2400x1600.jpg",
   srcset:
@@ -41,11 +39,12 @@ const BlackCat = {
   alt: "A man standing infront of an old mansion surrounded by fog",
 };
 const images = [SkullPumpkin, SmokyPumpkin, BloodMoon, CreepyHouse, BlackCat];
-let imageIndex = 0;
-let identifier = "";
 
-mainImg.src = images[imageIndex]["src"];
-mainImg.srcset = images[imageIndex]["srcset"];
+const mainImg = document.getElementById("mainImage");
+const lastbutton = document.getElementsByClassName("last");
+const nextbutton = document.getElementsByClassName("next");
+let imageIndex = Math.trunc(images.length / 2);
+let identifier = "";
 
 for (let i = 0; i < images.length; i++) {
   identifier = `img${i}`;
@@ -57,28 +56,20 @@ for (let i = 0; i < images.length; i++) {
   thumbnail.setAttribute("order", i);
 }
 
-function scrollImage(a) {
-  if (a === false) {
-    imageIndex = imageIndex - 1;
-  } else if (a === true) {
-    imageIndex = imageIndex + 1;
-  }
-  if (imageIndex > images.length - 1) {
-    imageIndex = 0;
-    console.log("reset imageIndex");
-  } else if (imageIndex < 0) {
-    imageIndex = images.length - 1;
-    console.log("set imageIndex to images.length -1");
-  }
-  mainImg.src = images[imageIndex]["src"];
-  console.log(images[imageIndex]["src"]);
-  mainImg.srcset = images[imageIndex]["srcset"];
-  mainImg.alt = images[imageIndex]["alt"];
-  console.log(images[imageIndex]["alt"]);
-  mainImg.title = images[imageIndex]["title"];
-}
+lastbutton[0].addEventListener("click", () => {
+  scroll(true);
+});
+lastbutton[1].addEventListener("click", () => {
+  scroll(true);
+});
+nextbutton[0].addEventListener("click", () => {
+  scroll(false);
+});
+nextbutton[1].addEventListener("click", () => {
+  scroll(false);
+});
 
-function scrollThumbnail(a) {
+function scroll(a) {
   for (let i = 0; i < images.length; i++) {
     identifier = `img${i}`;
     // console.log(identifier);
@@ -93,17 +84,33 @@ function scrollThumbnail(a) {
       imgOrder = imgOrder + 1;
     }
     if (imgOrder < 0) {
-      imgOrder = images.length;
+      imgOrder = images.length - 1;
       //console.log("overflowed less");
     } else if (imgOrder > images.length - 1) {
       imgOrder = 0;
-      //console.log("overflowed more");
+      // console.log("overflowed more");
     }
 
     document
       .getElementsByClassName(identifier)[0]
       .setAttribute("order", imgOrder);
     document.getElementsByClassName(identifier)[0].style.order = imgOrder;
-    // console.log(imgOrder);
+    //console.log(imgOrder);
   }
+
+  if (a === true) {
+    imageIndex = imageIndex - 1;
+  } else if (a === false) {
+    imageIndex = imageIndex + 1;
+  }
+  if (imageIndex > images.length - 1) {
+    imageIndex = 0;
+  } else if (imageIndex < 0) {
+    imageIndex = images.length - 1;
+  }
+  console.log(imageIndex);
+  mainImg.src = images[imageIndex]["src"];
+  mainImg.srcset = images[imageIndex]["srcset"];
+  mainImg.alt = images[imageIndex]["alt"];
+  mainImg.title = images[imageIndex]["title"];
 }
