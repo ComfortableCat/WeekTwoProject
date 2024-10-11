@@ -12,6 +12,7 @@ body {
   z-index: 0;
   object-fit: cover;
 }
+
 .LRContainer {
   align-items: center;
   display: flex;
@@ -21,7 +22,7 @@ body {
 .left,
 .right {
   width: 50%;
-  height: 80vh;
+  height: 100vh;
   display: flex;
   align-items: center;
 }
@@ -43,6 +44,7 @@ body {
   padding: 0;
   z-index: 999;
 }
+
 .next {
   background-image: url(./Assets/right-chevron.png);
 }
@@ -58,11 +60,11 @@ body {
   align-items: center;
   z-index: 400;
   position: absolute;
-  top: 30px;
+  top: 15px;
   left: 15%;
 }
 #thumbnail-scroller img {
-  width: 50px;
+  width: 100px;
   z-index: inherit;
 }
 #thumbnail-scroller button {
