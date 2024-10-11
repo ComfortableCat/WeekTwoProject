@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js" defer></script>
+  </head>
+  <body>
+    <main>
+      <img
+        id="mainImage"
+        src="./Assets/SmokyPumpkin/SmokyPumpkin-2400x1600.jpg"
+        srcset="
+          ./Assets/SmokyPumpkin/SmokyPumpkin-2400x1600.jpg 1600w,
+          ./Assets/SmokyPumpkin/SmokyPumpkin-1920x1280.jpg 1280w,
+          ./Assets/SmokyPumpkin/SmokyPumpkin-640x427.jpg    427w
+        "
+        alt="Main image placeholder"
+      />
+      <div id="thumbnail-scroller">
+        <button class="last"></button>
+        <img
+          class="thumbnail img0"
+          order="-1"
+          src="./Assets/SmokyPumpkin/SmokyPumpkin-640x427.jpg"
+          srcset="
+            ./Assets/SmokyPumpkin/SmokyPumpkin-2400x1600.jpg 1600w,
+            ./Assets/SmokyPumpkin/SmokyPumpkin-1920x1280.jpg 1280w,
+            ./Assets/SmokyPumpkin/SmokyPumpkin-640x427.jpg    427w
+          "
+          alt="A witchy person dressed in black sat in shrubbery with pumpkins and candles holding a small deers skull"
+        />
+        <img
+          class="thumbnail img1"
+          order="0"
+          src="./Assets/SkullPumpkin/SkullPumpkin-640x427.jpg"
+          alt=""
+        />
+        <img
+          order="1"
+          class="thumbnail img2"
+          src="./Assets/BloodMoon/BloodMoon-640x427.jpg"
+          alt=""
+        />
+        <!--<img class="thumbnail img3" src="" alt="" />
+        <img class="thumbnail img4" src="" alt="" />
+        <img class="thumbnail img5" src="" alt="" />
+        <img class="thumbnail img6" src="" alt="" />-->
+        <button class="next"></button>
+      </div>
+      <div class="LRContainer">
+        <div class="left">
+          <button class="last"></button>
+        </div>
+        <div class="right">
+          <button class="next"></button>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>
