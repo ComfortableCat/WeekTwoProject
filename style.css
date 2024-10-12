@@ -1,13 +1,55 @@
-html {
+* {
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
+}
+@media (min-width: 1200px) {
+  .LRContainer button {
+    visibility: hidden;
+  }
+  nav img {
+    width: 100px;
+  }
+}
+
+@media (min-width: 800px) and (max-width: 1199.9px) {
+  nav button {
+    visibility: hidden;
+    width: 0;
+  }
+  nav img {
+    width: 100px;
+  }
+}
+
+@media (max-width: 799.9px) {
+  nav button {
+    visibility: hidden;
+  }
+  .order0,
+  .order4 {
+    visibility: hidden;
+    width: 0px;
+  }
+}
+
+@media (max-width: 350px) {
+  .order1,
+  .order2,
+  .order3 {
+    width: 80px;
+  }
+  nav button {
+    visibility: hidden;
+  }
+  .order0,
+  .order4 {
+    visibility: hidden;
+    width: 0px;
+  }
 }
 body {
   background-color: black;
   margin: 0px;
 }
-
 #mainImage {
   position: fixed;
   height: 100vh;
@@ -17,7 +59,6 @@ body {
 .mainImg {
   border: 5px solid rgb(168, 199, 245);
 }
-
 .LRContainer {
   display: flex;
   flex-direction: row;
@@ -66,13 +107,16 @@ body {
   z-index: 400;
   position: absolute;
   top: 15px;
-  left: 10%;
+  left: 10vw;
 }
 #thumbnail-scroller img {
   border-radius: 10px;
-  width: 100px;
   height: 66.66666666%;
   z-index: inherit;
+}
+#thumbnail-scroller img:hover {
+  border-radius: 10px;
+  border: 2px solid orangered;
 }
 #thumbnail-scroller button {
   width: 50px;
@@ -93,4 +137,8 @@ body {
 }
 button:hover {
   cursor: pointer;
+}
+#thumbnail-scroller img:focus-visible,
+#thumbnail-scroller img:focus {
+  border: 2px solid rgb(173, 108, 234);
 }

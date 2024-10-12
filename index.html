@@ -9,18 +9,21 @@
   </head>
   <body>
     <header>
-      <div id="thumbnail-scroller">
-        <button class="last"></button>
-        <img class="thumbnail img0" />
-        <img class="thumbnail img1" />
-        <img class="thumbnail img2" />
-        <img class="thumbnail img3" />
-        <img class="thumbnail img4" />
-        <button class="next"></button>
-      </div>
+      <nav id="thumbnail-scroller">
+        <button class="last" tabindex="2" aria-label="Previous Image"></button>
+        <img class="thumbnail img0 order0" tabindex="3" />
+        <img class="thumbnail img1 order1" tabindex="4" />
+        <img class="thumbnail img2 order2" tabindex="5" />
+        <img class="thumbnail img3 order3" tabindex="6" />
+        <img class="thumbnail img4 order4" tabindex="7" />
+        <button class="next" tabindex="8" aria-label="Next Image"></button>
+      </nav>
     </header>
     <main>
       <img
+        aria-live="assertive"
+        ;
+        tabindex="1"
         id="mainImage"
         src="./Assets/BloodMoon/BloodMoon-2400x1600.jpg"
         srcset="
@@ -32,12 +35,16 @@
         alt="A red blood moon visible through silhoutted branches of a tree"
       />
 
-      <div class="LRContainer">
-        <div class="left">
-          <button class="last"></button>
+      <div class="LRContainer" tabindex="-1">
+        <div class="left" tabindex="-1">
+          <button
+            class="last"
+            tabindex="9"
+            aria-label="Previous Image"
+          ></button>
         </div>
-        <div class="right">
-          <button class="next"></button>
+        <div class="right" tabindex="-1">
+          <button class="next" tabindex="10" aria-label="Next Image"></button>
         </div>
       </div>
     </main>

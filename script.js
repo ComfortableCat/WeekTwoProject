@@ -36,7 +36,7 @@ const BlackCat = {
     "./Assets/BlackCat/BlackCat-2400x1600.jpg 1600w, ./Assets/BlackCat/BlackCat-1920x1280.jpg 1280w, ./Assets/BlackCat/BlackCat-640x427.jpg 427w",
   thumbnail: "./Assets/BlackCat/BlackCat-640x427.jpg",
   title: "BlackCat",
-  alt: "A man standing infront of an old mansion surrounded by fog",
+  alt: "A Black Cat peering out of the darkness",
 };
 const images = [SkullPumpkin, SmokyPumpkin, BloodMoon, CreepyHouse, BlackCat];
 
@@ -54,7 +54,31 @@ for (let i = 0; i < images.length; i++) {
   thumbnail.alt = images[i]["alt"];
   thumbnail.title = images[i]["title"];
   thumbnail.setAttribute("order", i);
+  thumbnail.ariaLabel = `${images[i]["title"]} preview`;
 }
+document.getElementsByClassName("img0")[0].addEventListener("click", () => {
+  thumbnail(0);
+});
+document.getElementsByClassName("img1")[0].addEventListener("click", () => {
+  thumbnail(1);
+});
+document.getElementsByClassName("img2")[0].addEventListener("click", () => {
+  thumbnail(2);
+});
+document.getElementsByClassName("img3")[0].addEventListener("click", () => {
+  thumbnail(3);
+});
+document.getElementsByClassName("img4")[0].addEventListener("click", () => {
+  thumbnail(4);
+});
+document.addEventListener("keydown", function (event) {
+  const key = event;
+  if (key.key === "d" || key.key === "ArrowRight") {
+    scroll(false);
+  } else if (key.key === "a" || key.key === "ArrowLeft") {
+    scroll(true);
+  }
+});
 
 lastbutton[0].addEventListener("click", () => {
   scroll(true);
@@ -70,6 +94,7 @@ nextbutton[1].addEventListener("click", () => {
 });
 
 function scroll(a) {
+  let order = 0;
   for (let i = 0; i < images.length; i++) {
     identifier = `img${i}`;
     // console.log(identifier);
@@ -78,6 +103,9 @@ function scroll(a) {
       .getAttribute("order");
     //console.log(`Set image order to ${imgOrder}`);
     imgOrder = Number(imgOrder);
+    document
+      .getElementsByClassName(identifier)[0]
+      .classList.remove(`order${imgOrder}`);
     if (a === false) {
       imgOrder = imgOrder - 1;
     } else if (a === true) {
@@ -90,10 +118,15 @@ function scroll(a) {
       imgOrder = 0;
       // console.log("overflowed more");
     }
-
+    document
+      .getElementsByClassName(identifier)[0]
+      .classList.add(`order${imgOrder}`);
     document
       .getElementsByClassName(identifier)[0]
       .setAttribute("order", imgOrder);
+    document
+      .getElementsByClassName(identifier)[0]
+      .setAttribute("tabindex", imgOrder + 3);
     document.getElementsByClassName(identifier)[0].style.order = imgOrder;
     //console.log(imgOrder);
   }
@@ -108,9 +141,48 @@ function scroll(a) {
   } else if (imageIndex < 0) {
     imageIndex = images.length - 1;
   }
-  console.log(imageIndex);
   mainImg.src = images[imageIndex]["src"];
   mainImg.srcset = images[imageIndex]["srcset"];
   mainImg.alt = images[imageIndex]["alt"];
   mainImg.title = images[imageIndex]["title"];
+  /*let imgorder = 0;
+  for (let i = 0; i < images.length; i++) {
+    identifier = `img${i}`;
+    if (a === true) {
+      imgorder = imageIndex + i;
+    } else if (a === false) {
+      imgorder = imageIndex - i;
+    }
+    if (imgorder > images.length - 1) {
+      imgorder = imgorder - images.length - 1;
+      console.log(`after overflow ${imgorder}`);
+    } else if (imgorder < 0) {
+      imgorder = imgorder + images.length - 1;
+      console.log(`after underflow ${imgorder}`);
+    }
+    console.log(imageIndex);
+    console.log(imgorder);
+    thumbnail = document.getElementsByClassName(identifier)[0];
+    thumbnail.src = images[imgorder]["thumbnail"];
+    thumbnail.srcset = images[imgorder]["srcset"];
+    thumbnail.alt = images[imgorder]["alt"];
+    thumbnail.title = images[imgorder]["title"];
+  }*/
+}
+function thumbnail(a) {
+  let noTooLoop = document
+    .getElementsByClassName(`img${a}`)[0]
+    .getAttribute("order");
+  noTooLoop = Number(noTooLoop);
+  if (noTooLoop === 0) {
+    scroll(true);
+    scroll(true);
+  } else if (noTooLoop === 1) {
+    scroll(true);
+  } else if (noTooLoop === 3) {
+    scroll(false);
+  } else if (noTooLoop === 4) {
+    scroll(false);
+    scroll(false);
+  }
 }
